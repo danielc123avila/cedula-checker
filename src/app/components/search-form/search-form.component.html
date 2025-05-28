@@ -1,0 +1,18 @@
+<form [formGroup]="cedulaForm" (ngSubmit)="onSubmit()">
+  <label for="cedula">Número de Cédula:</label>
+  <input id="cedula" type="text" formControlName="cedula" />
+  <button type="submit" [disabled]="cedulaForm.invalid || loading">Validar</button>
+</form>
+
+<div *ngIf="loading">Validando...</div>
+
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<div *ngIf="userFound === true">
+  <p>✅ Usuario encontrado. Puedes continuar con el proceso.</p>
+  <pre>{{ userData | json }}</pre>
+</div>
+
+<div *ngIf="userFound === false">
+  <p>❌ No estás registrado.</p>
+</div>
